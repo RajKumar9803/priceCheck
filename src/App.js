@@ -1,24 +1,30 @@
 import logo from './logo.svg';
 import './App.css';
+import Header from './components/Header';
+import Items from './components/itemCode'
+import SavedData from './components/saveCart'
+import { BrowserRouter } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom'
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <BrowserRouter>
+        <Header />
+        <Routes>
+          <Route path="/" element={<Items />} />
+          <Route path="/qrCode" element={<SavedData />} />
+
+
+        </Routes>
+
+      </BrowserRouter>
+
+
+
+
+    </>
   );
 }
 
