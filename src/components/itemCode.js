@@ -10,13 +10,15 @@ function Items() {
     const storeDeviceId = useSelector((cv) => cv.cartReducer)
 
 
+
     const [inputData, setInputData] = useState("");
     const [cartId, setCartId] = useState("")
     const [getData, setGetData] = useState([])
     const dispatch = useDispatch()
+    console.log(getData, "getData")
 
 
-    const host = "http://52.66.79.128:8090";
+    const host = "http://65.0.101.211:8090";
     //getCartId
     const getCartApi = () => {
         axios.get(`${host}/getcart/${storeDeviceId.DeviceId}`)
@@ -28,7 +30,6 @@ function Items() {
     const sendGetRequest = (itemCode) => {
         axios.get(`${host}/itemCode/${itemCode}`)
             .then((cv) => {
-
                 axios.post(`${host}/addproduct/${storeDeviceId.DeviceId}/${cartId}`, {
                     item_code: cv.data.item_code,
                     item_quantity: 1,

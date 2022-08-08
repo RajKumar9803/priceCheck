@@ -15,6 +15,7 @@ import { qrData } from '../redux/actions/action'
 
 function Header() {
     const storeReduxData = useSelector((state) => state.cartReducer);
+    console.log(storeReduxData, "storeReduxData")
 
 
     const deviceId = storeReduxData.DeviceId
@@ -36,7 +37,7 @@ function Header() {
     };
 
     const deleteApi = (id) => {
-        axios.delete(`http://52.66.79.128:8090/deleteproduct/${deviceId}/${cartsId}/${id}`)
+        axios.delete(`http://65.0.101.211:8090/deleteproduct/${deviceId}/${cartsId}/${id}`)
             .then((response) => {
                 setUpdateCartData(response?.data)
                 getTotalPrice(response?.data)
@@ -62,7 +63,7 @@ function Header() {
     console.log(total, "pt")
 
     const saveData = () => {
-        axios.get(`http://52.66.79.128:8090/generateQrCode/${deviceId}/${cartsId}`)
+        axios.get(`http://65.0.101.211:8090/generateQrCode/${deviceId}/${cartsId}`)
 
             .then((resp) => dispatch(qrData(resp && resp.data)))
 
@@ -200,7 +201,7 @@ function Header() {
                                             updateCartData && updateCartData?.products?.map((cd) => {
 
                                                 return (
-                                                    <Grid lg={12} Container sx={{ display: { lg: "flex", md: "flex", sm: "flex", xs: "flex" } }} justifyContent={"space-around"} mt={2} key={cd.id} >
+                                                    <Grid lg={12} Container sx={{ display: { lg: "flex", md: "flex", sm: "flex", xs: "flex" }, textAlign: "center" }} justifyContent={"space-around"} mt={2} key={cd.id} >
                                                         <Grid lg={2} item>{cd.item_code}</Grid>
                                                         <Grid lg={2} item>{cd.item_desc}</Grid>
                                                         <Grid lg={1} item>{cd.item_quantity}</Grid>
@@ -251,7 +252,7 @@ function Header() {
 
                                     </Box>
                                 ) : (
-                                    <Card sx={{ display: { lg: "flex", sm: "block" } }}>
+                                    <Card sx={{ display: { lg: "flex", sm: "block", xs: "block" } }}>
                                         <CardMedia
                                             component="img"
                                             height="150"
